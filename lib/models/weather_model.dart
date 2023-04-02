@@ -1,7 +1,7 @@
 class WeatherModel {
   String? cityName;
   double? temp;
-  double? wind;
+  int? wind;
   int? humidity;
   double? feels_like;
   int? pressure;
