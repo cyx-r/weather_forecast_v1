@@ -5,8 +5,10 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 import 'package:weather_forecast_v1/models/current_weather_card.dart';
-import 'package:weather_forecast_v1/services/weather_api_client.dart';
 import 'package:location/location.dart';
+
+import '../models/units.dart';
+import '../services/weather_service.dart';
 
 class MainPage extends StatefulWidget {
   final String route = "/";
@@ -14,37 +16,23 @@ class MainPage extends StatefulWidget {
 
   late WeatherFactory wf = WeatherFactory(APIkey);
   static const String APIkey = "5715ef1423a2d2f685746cbc6f9d4eca";
-  List<Weather> _data = [] ;
 
   final Location userLocation = Location();
   
+  Units units = Units.metric;
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
+
   bool isdarkTheme = true;
-  late LocationData currentLocation = Future.value();
-  Future<Weather> getCurrentWeather(double? lat, double? long) async{
-    try{
-      var weather = await widget.wf.currentWeatherByLocation(lat!, long!);
-      return weather;
-    }
-    catch(NullPointerException){
-      print("Location is null");
-    }
-    throw "ooooooooooo";
-  }
 
+  LocationData? currentLocation;
 
-  void getfiveDayForecast() async{
-    List<Weather> forecast = await widget.wf.fiveDayForecastByCityName("Omsk");
-    setState(() {
-      widget._data = forecast;
-    });  
-  }
-
+  
+  
   Future<LocationData> checkLocationPermission() async{
     var serviceEnabled = await widget.userLocation.serviceEnabled();
     if(!serviceEnabled){
@@ -62,15 +50,20 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+
     checkLocationPermission();
     return Scaffold(
-        backgroundColor: isdarkTheme ? Color.fromARGB(255, 83, 83, 83) : Colors.white,
+        backgroundColor: isdarkTheme ? Color.fromARGB(255, 83, 83, 83) : Color.fromARGB(255, 147, 198, 241),
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: isdarkTheme ? Colors.black : Color.fromARGB(255, 128, 193, 247),
-          title: Text("Weather Forecast"),
+          backgroundColor: isdarkTheme ?  Color.fromARGB(255, 124, 124, 124) : Color.fromARGB(255, 165, 212, 253),
+          title: Text(
+            "Weather Forecast",
+            style: TextStyle(color: isdarkTheme ? Colors.white60: Colors.white70  ),
+          ),
           actions: [
             IconButton(
+              color: isdarkTheme ? Colors.white60: Colors.white70 ,
               icon: const Icon(Icons.lightbulb),
               onPressed: (){
                 setState(() {
@@ -81,10 +74,9 @@ class _MainPageState extends State<MainPage> {
           ] 
         ),
         body: FutureBuilder(
-          future: getCurrentWeather(currentLocation.latitude,currentLocation.longitude),
+          future: WeatherService().getCurrentWeather(widget.wf, currentLocation?.latitude, currentLocation?.longitude),
           builder:(context, snapshot) {
             switch(snapshot.connectionState){
-              
               case ConnectionState.none:
                 return Center(child: CircularProgressIndicator(),);
               case ConnectionState.waiting:
@@ -93,7 +85,12 @@ class _MainPageState extends State<MainPage> {
                 return Center(child: CircularProgressIndicator(),);
 
               case ConnectionState.done:
-                return CurrentWeatherCard(isdarkTheme: isdarkTheme, weather: snapshot.data);
+                return ListView(
+                  children: [
+                    CurrentWeatherCard(isdarkTheme: isdarkTheme, weather: snapshot.data),
+                  
+                  ],
+                );
             }
           }, 
         ),
