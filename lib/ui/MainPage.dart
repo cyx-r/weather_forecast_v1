@@ -90,7 +90,7 @@ class _MainPageState extends State<MainPage> {
               child: Text(
                 widget.units == Units.metric ?"°C" :"°F",
                 style: TextStyle(
-                  color: isdarkTheme ? Colors.white60: Color.fromARGB(255, 53, 52, 52)
+                  color: isdarkTheme ? Colors.white60 : Color.fromARGB(255, 53, 52, 52)
                 ),
               ) 
             )

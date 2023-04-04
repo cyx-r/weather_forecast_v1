@@ -16,7 +16,7 @@ class FiveDayList extends StatelessWidget {
     return Column(
       children: [
         Text(
-            "the next 5 days",
+            "the next 15 hours",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 26,
@@ -24,7 +24,7 @@ class FiveDayList extends StatelessWidget {
             ),
           ),
         ListView.builder(
-          itemCount: forecasts!.length,
+          itemCount: 5,
           shrinkWrap: true,
           itemBuilder:(context, index) => GestureDetector(
             child: Card(
@@ -35,8 +35,8 @@ class FiveDayList extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Image(image: AssetImage(WeatherService().getImageFromDescription(forecasts![index].weatherDescription, DateTime.now().add(Duration(days: index))),),),
-                      Text("${forecasts![index].date!.day}.${forecasts![index].date!.month}.${forecasts![index].date!.year}")
+                      Image(image: AssetImage(WeatherService().getImageFromDescription(forecasts![index].weatherDescription, forecasts![index].date),),),
+                      Text("${DateTime.now().add(Duration(hours: 3*index)).hour}:${DateTime.now().add(Duration(hours: 3*index)).minute}")
                     ],
                   ),
                   Text("${forecasts![index].weatherDescription}")
