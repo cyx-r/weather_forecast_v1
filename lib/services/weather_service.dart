@@ -35,7 +35,6 @@ class WeatherService{
   }
 
   Future<List<Weather>> getfiveDayForecast(WeatherFactory wf,  double? lat, double? long) async{
-
     if(lat!=null && long != null){
       List<Weather> forecast = await wf.fiveDayForecastByLocation(lat, long);
       return forecast;

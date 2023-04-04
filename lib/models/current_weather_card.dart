@@ -18,14 +18,14 @@ class CurrentWeatherCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 26,
-              color:  isdarkTheme ? Colors.white60 : Colors.white70
+              color:  isdarkTheme ? Colors.white60 : Color.fromARGB(255, 53, 52, 52)
             ),
           ),
 
           const Divider( color:  Colors.white60,),
 
           Card(
-            color: isdarkTheme ? Color.fromARGB(255, 70, 70, 70) : Color.fromARGB(255, 154, 209, 253),
+            color: isdarkTheme ? Color.fromARGB(255, 70, 70, 70) : Color.fromARGB(255, 201, 203, 206),
             elevation: 12,
             child: Row(
             children: [
@@ -35,7 +35,7 @@ class CurrentWeatherCard extends StatelessWidget {
                   Text(
                     "${weather?.weatherDescription}",
                     style: TextStyle(
-                      color:  isdarkTheme ? Colors.white60: Colors.white70 ,
+                      color:  isdarkTheme ? Colors.white60: Color.fromARGB(255, 53, 52, 52) ,
                       fontWeight: FontWeight.w100,
                       fontSize: 15
                     ),
@@ -55,13 +55,13 @@ class CurrentWeatherCard extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 26,
-                      color:  isdarkTheme ? Colors.white60: Colors.white70
+                      color:  isdarkTheme ? Colors.white60: Color.fromARGB(255, 53, 52, 52)
                     ),
                   ),
                   Text(
                     "feels like ${weather!.tempFeelsLike}",
                     style: TextStyle(
-                      color:  isdarkTheme ? Colors.white60 : Colors.white70 ,
+                      color:  isdarkTheme ? Colors.white60 : Color.fromARGB(255, 53, 52, 52) ,
                       fontWeight: FontWeight.w100,
                       fontSize: 15
                     ),

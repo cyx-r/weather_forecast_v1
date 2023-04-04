@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast_v1/ui/MainPage.dart';
 
+import 'AboutPage.dart';
+
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   
@@ -21,7 +23,6 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => MainPage(),
-        
       },
     );
   }
