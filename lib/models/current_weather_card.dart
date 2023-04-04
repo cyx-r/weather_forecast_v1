@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:weather/weather.dart';
+import 'package:weather_forecast_v1/models/units.dart';
 import 'package:weather_forecast_v1/services/weather_service.dart';
 
 class CurrentWeatherCard extends StatelessWidget {
   bool isdarkTheme;
   Weather? weather;
-  CurrentWeatherCard({ required this.isdarkTheme, required this.weather,super.key});
+  Units units;
+  CurrentWeatherCard({ required this.isdarkTheme, required this.weather, required this.units,super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class CurrentWeatherCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    "${weather!.temperature}",
+                    units == Units.metric ? "${weather!.temperature}" : "${weather!.temperature!.kelvin}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 26,
@@ -59,7 +61,7 @@ class CurrentWeatherCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "feels like ${weather!.tempFeelsLike}",
+                    units == Units.metric ? "feels like ${weather!.tempFeelsLike}" : "feels like ${weather!.tempFeelsLike!.fahrenheit}",
                     style: TextStyle(
                       color:  isdarkTheme ? Colors.white60 : Color.fromARGB(255, 53, 52, 52) ,
                       fontWeight: FontWeight.w100,

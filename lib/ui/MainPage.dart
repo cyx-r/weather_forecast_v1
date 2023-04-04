@@ -72,6 +72,28 @@ class _MainPageState extends State<MainPage> {
                 });
               },
             ),
+            TextButton(
+              
+              onPressed:(){
+                setState(() {
+                  switch(widget.units){
+                    
+                    case Units.metric:
+                      widget.units = Units.imperial;
+                      break;
+                    case Units.imperial:
+                      widget.units = Units.metric;
+                      break;
+                  }
+                });
+              },
+              child: Text(
+                widget.units == Units.metric ?"°C" :"°F",
+                style: TextStyle(
+                  color: isdarkTheme ? Colors.white60: Color.fromARGB(255, 53, 52, 52)
+                ),
+              ) 
+            )
           ] 
         ),
         body: ListView(
@@ -89,7 +111,7 @@ class _MainPageState extends State<MainPage> {
                     return Center(child: CircularProgressIndicator(),);
 
                   case ConnectionState.done:
-                    return CurrentWeatherCard(isdarkTheme: isdarkTheme, weather: snapshot.data);
+                    return CurrentWeatherCard(isdarkTheme: isdarkTheme, weather: snapshot.data, units: widget.units );
                 }
               }, 
             ),
@@ -105,12 +127,12 @@ class _MainPageState extends State<MainPage> {
                     return Center(child: CircularProgressIndicator(),);
 
                   case ConnectionState.done:
-                    return FiveDayList(isdarkTheme: isdarkTheme, forecasts: snapshot.data);
+                    return FiveDayList(isdarkTheme: isdarkTheme, forecasts: snapshot.data, units: widget.units);
                 }
               },
             )
           ],
-        )
+        ),
       );
   }
 }

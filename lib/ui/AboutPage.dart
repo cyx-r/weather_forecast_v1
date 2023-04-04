@@ -3,11 +3,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:weather/weather.dart';
 
+import '../models/units.dart';
+
 class AboutPage extends StatefulWidget {
   final String route = "/about";
   Weather? weather;
   bool isdarkTheme;
-  AboutPage({required this.weather,required this.isdarkTheme, super.key});
+  Units units;
+  AboutPage({required this.weather,required this.isdarkTheme, required this.units, super.key});
 
   @override
   State<AboutPage> createState() => _AboutPageState();
@@ -92,7 +95,7 @@ class _AboutPageState extends State<AboutPage> {
               ),
             ),
             trailing: Text(
-              "${widget.weather!.temperature}",
+              widget.units == Units.metric ? "${widget.weather!.temperature!.celsius}" : "${widget.weather!.temperature!.fahrenheit}",
               style: TextStyle(
                 color: widget.isdarkTheme ? Colors.white60: Color.fromARGB(255, 53, 52, 52),
                 fontWeight: FontWeight.w200
