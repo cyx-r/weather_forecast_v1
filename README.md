@@ -1,20 +1,12 @@
 # weather_forecast_v1
 
-Тестовое в Students Labs, осталось немного доделать
+Тестовое в Students Labs, остал
 
-![image](https://user-images.githubusercontent.com/79749070/229585257-b02a6cd2-c03f-4980-a570-863133ecf65c.png)
-![image](https://user-images.githubusercontent.com/79749070/229585299-856ad4b1-b5bf-4b84-8c5b-f6678f1ae8d4.png)
+Данное приложение на данный момент(коммит 04.04.23) показывает текущую погоду, а также 5 карточек-прогнозов на 15 часов вперед (каждый по +3 часа)
+По клике на 1 из 5 карточек откроется страничка с более подробными показателями.
 
+Можно менять темы: темная\светлая, а также единицы измерения: метрическая/имперская
 
-## Getting Started
+Для работы с погодой был задействован OpenWeatherAPI + библиотека на pub.dev для работы с этим API
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+В  красивый UI тут не получилось, не считаю его сильной своей стороной
