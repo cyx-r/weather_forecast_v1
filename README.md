@@ -1,6 +1,10 @@
 # weather_forecast_v1
 
-A new Flutter project.
+Тестовое в Students Labs, осталось немного доделать
+
+![image](https://user-images.githubusercontent.com/79749070/229585257-b02a6cd2-c03f-4980-a570-863133ecf65c.png)
+![image](https://user-images.githubusercontent.com/79749070/229585299-856ad4b1-b5bf-4b84-8c5b-f6678f1ae8d4.png)
+
 
 ## Getting Started
 
